@@ -1,4 +1,5 @@
 FROM python:3.7
+
 WORKDIR /src/flask
 COPY ./examples/tutorial /src/flask
 RUN pip install -e .
