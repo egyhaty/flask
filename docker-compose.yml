@@ -19,6 +19,12 @@ services:
       - 8080:8080
     stdin_open: true
     tty: true
+  test:
+    depends_on:
+      - mysqldb
+    build: ./
+    env_file: ./.env
+    command: ["sh", "./k.sh"]
 
 volumes: 
   db:
