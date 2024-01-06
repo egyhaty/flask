@@ -2,11 +2,31 @@ name: Build and Publish Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-publish:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker-compose up -d build --no-cache --force-rm 
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test the Docker image
+        run: docker-compose up -d
+
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
     steps:
