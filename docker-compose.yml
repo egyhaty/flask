@@ -4,7 +4,7 @@ services:
   mysqldb:
     image: mysql:8.0
     restart: unless-stopped
-    env_file: ./.env
+    #env_file: ./.env
     ports:
       - 3306:3306
     volumes:
@@ -14,7 +14,7 @@ services:
       - mysqldb
     build: ./
     restart: unless-stopped
-    env_file: ./.env
+    #env_file: ./.env
     ports:
       - 8080:8080
     stdin_open: true
@@ -23,7 +23,7 @@ services:
     depends_on:
       - mysqldb
     build: ./
-    env_file: ./.env
+    #env_file: ./.env
     command: ["sh", "./k.sh"]
 
 volumes: 
