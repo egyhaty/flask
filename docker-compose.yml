@@ -23,8 +23,7 @@ services:
     depends_on:
       - mysqldb
     build: ./
-    
-    command: ["sh", "./k.sh"]
+    command: ["sh", "k.sh"]
 
 volumes: 
   db:
