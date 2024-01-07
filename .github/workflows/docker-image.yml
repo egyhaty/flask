@@ -28,12 +28,15 @@ jobs:
         with:
           push: true
           tags: egyhaty/flask:latest
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
+      
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
         with:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            ARGS: "-rlgoDzvc -i --delete"
-            #SOURCE: "dist/"
-            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-            REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          script:   |
+            whoami
+            ls -al
+            
   
