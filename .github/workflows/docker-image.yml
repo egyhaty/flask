@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      
 
 jobs:
   docker:
@@ -27,3 +28,12 @@ jobs:
         with:
           push: true
           tags: egyhaty/flask:latest
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            ARGS: "-rlgoDzvc -i --delete"
+            #SOURCE: "dist/"
+            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+            REMOTE_USER: ${{ secrets.REMOTE_USER }}
+  
