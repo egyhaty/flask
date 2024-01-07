@@ -29,12 +29,13 @@ jobs:
           push: true
           tags: egyhaty/flask:latest
       
-      - name: executing remote ssh commands using password
+      - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          key_path: /root/.ssh/github_action
           script:   |
             whoami
             ls -al
