@@ -38,6 +38,6 @@ jobs:
           #key_path: /root/.ssh/github_action
           script:   |
             docker pull egyhaty/flask:latest
-            docker docker compose up -d --build
+            docker docker compose up 
             
   
