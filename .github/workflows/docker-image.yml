@@ -38,6 +38,6 @@ jobs:
           key_path: /root/.ssh/github_action
           script:   |
             docker pull egyhaty/flask:latest
-            docker run -it --name flask -p 3000:5000 -d flask
+            docker run -it --name flask -p 3000:5000 -d egyhaty/flask
             
   
