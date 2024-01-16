@@ -23,19 +23,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Testing
-        run: |
-            docker run egyhaty/flask
-            pip install '.[test]'
-            pytest      
-            exit
-            docker rm egyhaty/flask
+      
       -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: egyhaty/flask:latest
+
+      - name: Run test cases
+        id: run-test-cases
+        run: |
+             pip install '.[test]'
+             pytest
+             docker-compose -f  -p  \
+             up --build --exit-code-from 
+             echo --- Completed test cases ---
+              
       
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
