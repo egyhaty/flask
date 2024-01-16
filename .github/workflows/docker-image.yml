@@ -35,7 +35,7 @@ jobs:
         id: run-test-cases
         run: |
           docker pull egyhaty/flask:latest
-          docker-compose up -d--build 
+          docker run -it --name flask -p 3000:5000 -d flask 
           pip install '.[test]'
           coverage run -m pytest
           echo --- Completed test cases ---
