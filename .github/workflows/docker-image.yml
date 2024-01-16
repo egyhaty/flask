@@ -31,16 +31,15 @@ jobs:
         with:
           push: true
           tags: egyhaty/flask:latest
-
       - name: Run test cases
         run: |
-            docker pull egyhaty/flask:latest
-            docker run -it --name flask -d flask
-            docker exec -it flask bash
-            pip install '.[test]'
-            pytest
-            echo --- Completed test cases ---
-              
+          docker pull egyhaty/flask:latest
+          docker run -it --name flask -d egyhaty/flask:latest
+          docker exec -it flask bash
+          pip install '.[test]'
+          pytest
+          echo --- Completed test cases ---
+                
       
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
