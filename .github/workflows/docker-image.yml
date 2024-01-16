@@ -49,7 +49,7 @@ jobs:
           
           script:   |
             docker pull egyhaty/flask:latest
-            gh repo clone egyhaty/flask
+            git pull https://github.com/egyhaty/flask
             docker compose up -d --build
             
   
