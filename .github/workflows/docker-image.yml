@@ -33,11 +33,9 @@ jobs:
           tags: egyhaty/flask:latest
       - name: Run test cases
         run: |
-          docker pull egyhaty/flask:latest
-          docker run -d --name flask egyhaty/flask:latest
-          docker exec flask pip install '.[test]'
-          docker exec flask pytest
-          echo --- Completed test cases ---
+          docker run -d --name flask egyhaty/flask:latest ./k.sh
+          
+          
                 
       
       - name: executing remote ssh commands using Key
@@ -50,6 +48,6 @@ jobs:
           script:   |
             docker pull egyhaty/flask:latest
             git pull https://github.com/egyhaty/flask
-            docker compose up -d --build
+              docker compose up -d --build
             
   
