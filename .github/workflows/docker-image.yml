@@ -36,8 +36,9 @@ jobs:
         run: |
              pip install '.[test]'
              pytest
-             docker-compose -f  -p  \
-             up --build --exit-code-from 
+             docker-compose up --build 
+             pip install '.[test]'
+             pytest
              echo --- Completed test cases ---
               
       
