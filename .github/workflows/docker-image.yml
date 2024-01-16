@@ -34,12 +34,11 @@ jobs:
       - name: Run test cases
         id: run-test-cases
         run: |
-             pip install '.[test]'
-             pytest
-             docker-compose up --build 
-             pip install '.[test]'
-             pytest
-             echo --- Completed test cases ---
+          
+          docker-compose up --build 
+          pip install '.[test]'
+          coverage run -m pytest
+          echo --- Completed test cases ---
               
       
       - name: executing remote ssh commands using Key
@@ -48,7 +47,7 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key:      ${{ secrets.SSH_PRIVATE_KEY }}
-          #key_path: /root/.ssh/github_action
+          
           script:   |
             docker pull egyhaty/flask:latest
             docker compose up -d --build
