@@ -34,8 +34,8 @@ jobs:
       - name: Run test cases
         id: run-test-cases
         run: |
-          
-          docker-compose up --build 
+          docker pull egyhaty/flask:latest
+          docker-compose up -d--build 
           pip install '.[test]'
           coverage run -m pytest
           echo --- Completed test cases ---
