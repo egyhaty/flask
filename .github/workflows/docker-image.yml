@@ -46,8 +46,8 @@ jobs:
           key:      ${{ secrets.SSH_PRIVATE_KEY }}
           
           script:   |
-            docker pull egyhaty/flask:latest
-            git pull https://github.com/egyhaty/flask
-              docker compose up -d --build
+            
+            git pull 
+            docker compose up -d 
             
   

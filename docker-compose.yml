@@ -4,17 +4,11 @@ services:
  
   app:
     
-    build: ./
+    image: egyhaty/flask:latest
     restart: unless-stopped
    
     ports:
       - 8080:8080
     stdin_open: true
     tty: true
-  test:
-    
-    build: ./
-    command: ["sh", "k.sh"]
 
-volumes: 
-  db:
