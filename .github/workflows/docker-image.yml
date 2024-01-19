@@ -1,4 +1,4 @@
-name: First Pipline
+name: First Pipeline
 
 on:
   push:
@@ -9,39 +9,36 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      -
-        name: Login to Docker Hub
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-    
 
       - name: Set short git commit SHA
         id: vars
         run: |
-            calculatedSha=$(git rev-parse --short ${{ github.sha }})
-            echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
-        
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
       - name: Confirm git commit SHA output
         run: echo ${{ env.COMMIT_SHORT_SHA }}
-      -
-        name: Build and push
+
+      - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ env.COMMIT_SHORT_SHA }}
           labels: ${{ env.COMMIT_SHORT_SHA }}
-      -
-        name: Run test cases
+
+      - name: Run test cases
         run: |
           docker run -d --name flask egyhaty/flask/${{ env.COMMIT_SHORT_SHA }} ./k.sh
-      -
-        name: executing remote ssh commands using Key
+
+      - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
