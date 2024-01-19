@@ -45,5 +45,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: tag
           script: |
+            cd /root/flask
             git pull 
             docker-compose up -d 
