@@ -42,5 +42,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            git pull
+            git fetch
             docker-compose up -d 
