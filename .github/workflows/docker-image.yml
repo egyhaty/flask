@@ -16,16 +16,25 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+            calculatedSha=$(git rev-parse --short ${{ github.sha }})
+            echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+        
+      - name: Confirm git commit SHA output
+        run: echo ${{ env.COMMIT_SHORT_SHA }}
       -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: egyhaty/flask:latest
+          tags: $GITHUB_ENV
+          labels: $GITHUB_ENV
       -
         name: Run test cases
         run: |
-          docker run -d --name flask egyhaty/flask:latest ./k.sh
+          docker run -d --name flask egyhaty/flask:$GITHUB_ENV ./k.sh
       -
         name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
