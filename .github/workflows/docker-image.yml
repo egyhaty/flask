@@ -43,4 +43,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             git pull
-            docker-compose up -d egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
+            docker-compose up -d 
