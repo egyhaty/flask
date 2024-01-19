@@ -12,7 +12,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
+    image: egyhaty/flask:$${{ env.COMMIT_SHORT_SHA }}
     restart: unless-stopped
     ports:
       - "5000:3000"  
