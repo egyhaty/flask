@@ -37,10 +37,13 @@ jobs:
           docker run -d --name flask egyhaty/flask:${{ env.COMMIT_SHORT_SHA }} ./k.sh
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
+        env:
+          tag: env.COMMIT_SHORT_SHA
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: tag
           script: |
-            git pull https://github.com/egyhaty/flask/
+            git pull 
             docker-compose up -d 

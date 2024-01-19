@@ -12,14 +12,13 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: egyhaty/flask:${COMMIT_SHORT_SHA}
+    image: egyhaty/flask:tag
     restart: unless-stopped
     ports:
       - "5000:3000"  
     stdin_open: true
     tty: true
-    environment:
-      - COMMIT_SHORT_SHA=${calculatedSha" >> $GITHUB_ENV}
+
 
 volumes: 
   db:
