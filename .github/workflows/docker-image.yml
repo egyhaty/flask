@@ -32,12 +32,12 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: $GITHUB_ENV
-          labels: $GITHUB_ENV
+          tags: $COMMIT_SHORT_SHA
+          labels: $COMMIT_SHORT_SHA
       -
         name: Run test cases
         run: |
-          docker run -d --name flask egyhaty/flask:$GITHUB_ENV ./k.sh
+          docker run -d --name flask egyhaty/flask:$COMMIT_SHORT_SHA ./k.sh
       -
         name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
