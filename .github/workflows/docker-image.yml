@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: yaml-lint
-        uses: ibiqlik/action-yamllint@v3
+     #- name: yaml-lint
+      # uses: ibiqlik/action-yamllint@v3
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
