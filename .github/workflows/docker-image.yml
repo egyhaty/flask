@@ -42,5 +42,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            git pull origin main
+            git pull https://github.com/egyhaty/flask/
             docker-compose up -d 
