@@ -38,7 +38,7 @@ jobs:
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
         env:
-          tag: env.COMMIT_SHORT_SHA
+          tag: ${{ env.COMMIT_SHORT_SHA }}
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
