@@ -1,14 +1,23 @@
 version: '3.8'
 
 services:
- 
+  mysqldb:
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
   app:
-    
+    depends_on:
+      - mysqldb
     image: egyhaty/flask:latest
     restart: unless-stopped
-   
     ports:
-      - 8080:8080
+      - "5000:3000"  
     stdin_open: true
     tty: true
 
+volumes: 
+  db:
