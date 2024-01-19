@@ -36,12 +36,12 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: egyhaty/flask/${{ env.COMMIT_SHORT_SHA }}
-          labels: egyhaty/flask/${{ env.COMMIT_SHORT_SHA }}
+          tags: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
+          labels: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
 
       - name: Run test cases
         run: |
-          docker run -d --name flask egyhaty/flask/${{ env.COMMIT_SHORT_SHA }} ./k.sh
+          docker run -d --name flask egyhaty/flask:${{ env.COMMIT_SHORT_SHA }} ./k.sh
 
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
