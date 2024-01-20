@@ -46,7 +46,8 @@ jobs:
           envs: tag
           script: |
             echo " check $tag "
-            echo " export tag=$tag "
+            export tag=$tag 
+            echo " check $tag "
             cd /root/flask
             git pull 
             docker-compose up -d 
