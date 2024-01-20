@@ -15,7 +15,7 @@ services:
     image: egyhaty/flask:${TAG}
     restart: unless-stopped
     ports:
-      - "5000:3000"  
+      - "1000:5000"  
     stdin_open: true
     tty: true
 
