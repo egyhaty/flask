@@ -45,6 +45,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: tag
           script: |
+            echo " check $tag "
+            echo " export tag=$tag "
             cd /root/flask
             git pull 
             docker-compose up -d 
