@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
+          TAGs: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
           labels: egyhaty/flask:${{ env.COMMIT_SHORT_SHA }}
       - name: Run test cases
         run: |
@@ -38,16 +38,16 @@ jobs:
       - name: executing remote ssh commands using Key
         uses: appleboy/ssh-action@v1.0.3
         env:
-          tag: ${{ env.COMMIT_SHORT_SHA }}
+          TAG: ${{ env.COMMIT_SHORT_SHA }}
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: tag
+          envs: TAG
           script: |
-            echo " check $tag "
-            export tag=$tag 
-            echo " check $tag "
+            echo " check $TAG "
+            export TAG=$TAG 
+            echo " check $TAG "
             cd /root/flask
             git pull 
             docker-compose up -d 
